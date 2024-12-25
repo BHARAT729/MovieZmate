@@ -1,7 +1,7 @@
 # Movie Recommender
 
 ## Website
-[Movie Recommender Web App](https://movierecommender-pof22t3ecfsgaqpxs458tn.streamlit.app)
+[Movie Recommender Web App](https://bharat-moviers.streamlit.app/)
 
 ## Overview
 This project is a movie recommender system based on content-based recommendation using vectorization. It utilizes Jupyter Notebook for preprocessing and creating `.pkl` files, and Python with Streamlit for launching a web application.
@@ -30,7 +30,7 @@ This project is a movie recommender system based on content-based recommendation
     streamlit run app.py
     ```
 5. **Visit the following link in your web browser:**
-    [Movie Recommender Web App](https://movierecommender-pof22t3ecfsgaqpxs458tn.streamlit.app)
+    [Movie Recommender Web App](https://bharat-moviers.streamlit.app/)
 
 ## How it works
 - The project preprocesses movie data and uses vectorization techniques for content-based recommendation.
