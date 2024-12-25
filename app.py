@@ -42,7 +42,7 @@ def recommend(movie):
 
 similarity = pickle.load(open("similarity.pkl", "rb"))
 
-st.title("Movie Recommender System")
+st.title("MovieZmate")
 
 selected_movie_name = st.selectbox(
     "Select A Movie From Below List", movies["title"].values
