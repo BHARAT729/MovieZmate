@@ -1,10 +1,10 @@
-# Movie Recommender
+# MovieZmate
 
 ## Website
-[Movie Recommender Web App](https://bharat-moviers.streamlit.app/)
+[MovieZmate Web App](https://moviezmate.streamlit.app/)
 
 ## Overview
-This project is a movie recommender system based on content-based recommendation using vectorization. It utilizes Jupyter Notebook for preprocessing and creating `.pkl` files, and Python with Streamlit for launching a web application.
+This project is a movies suggestion system based on content-based recommendation using vectorization. It utilizes Jupyter Notebook for preprocessing and creating `.pkl` files, and Python with Streamlit for launching a web application.
 
 ## Requirements
 - Python 3.x
@@ -19,7 +19,7 @@ This project is a movie recommender system based on content-based recommendation
     ```
 2. **Navigate to the project directory:**
     ```bash
-    cd movie-recommender
+    cd MovieZmate
     ```
 3. **Install dependencies:**
     ```bash
@@ -30,7 +30,7 @@ This project is a movie recommender system based on content-based recommendation
     streamlit run app.py
     ```
 5. **Visit the following link in your web browser:**
-    [Movie Recommender Web App](https://bharat-moviers.streamlit.app/)
+    [MovieZmate Web App](https://moviezmate.streamlit.app/)
 
 ## How it works
 - The project preprocesses movie data and uses vectorization techniques for content-based recommendation.
