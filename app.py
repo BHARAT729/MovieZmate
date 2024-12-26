@@ -110,14 +110,16 @@ if st.button("Find Movies For Me"):
             for member in cast:
                 st.write(f"- {member}")
 
-            # Display trailer link with YouTube logo
+            # Display trailer link with YouTube logo and "Watch Trailer" button
             trailer_url = get_trailer(movie_id)
             if trailer_url:
                 youtube_logo_url = "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png"
                 
-                # Display clickable YouTube logo that opens the trailer
+                # Display the "Watch Trailer on YouTube" button and the logo
                 st.markdown(
                     f'<a href="{trailer_url}" target="_blank">'
-                    f'<img src="{youtube_logo_url}" alt="YouTube" style="width: 50px; height: 50px;"></a>',
+                    f'<button style="background-color: red; color: white; padding: 10px 20px; border-radius: 5px; display: flex; align-items: center; justify-content: center;">'
+                    f'<img src="{youtube_logo_url}" alt="YouTube" style="width: 30px; height: 30px; margin-right: 10px;">'
+                    f'Watch Trailer on YouTube</button></a>',
                     unsafe_allow_html=True,
                 )
