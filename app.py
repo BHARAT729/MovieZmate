@@ -78,10 +78,7 @@ if st.button("Find Movies For Me"):
         with st.container():
             st.image(poster)
             st.text(name)
-            st.write(get_movie_details(movie_id))
-            trailer_url = get_movie_trailer(movie_id)
-            if trailer_url:
-                st.video(trailer_url)
+            st.write(get_movie_details(movie_id) 
             ratings = get_ratings(movie_id)
             if ratings:
                 st.write("**Ratings:**")
