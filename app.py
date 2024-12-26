@@ -53,17 +53,6 @@ def get_movie_details(movie_id):
     release_date = data.get('release_date', 'N/A')
     return f"**Overview:** {overview}\n**Genres:** {', '.join(genres)}\n**Release Date:** {release_date}"
 
-def get_movie_trailer(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}/videos"
-    headers = {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzFlNjZkODBlNzVlMDY1NWQxZWNjYTE3OWYyYjc1YSIsInN1YiI6IjY0YmQwNmI5ZTlkYTY5MDBlY2VhNjJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9oIez0y-WbwchQvc-avTyxaRA2Av8 requests.get(url, headers=headers)
-    data = response.json()
-    for video in data['results']:
-        if video['type'] == 'Trailer':
-            return f"https://www.youtube.com/watch?v={video['key']}"
-    return None
-
 def get_ratings(movie_id):
     # Replace with your actual rating data source
     # This is a placeholder
