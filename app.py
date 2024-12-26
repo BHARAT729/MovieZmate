@@ -3,23 +3,25 @@ import pickle
 import pandas as pd
 import requests
 
-# Load the movie data and similarity matrix
+# Load movie data and similarity matrix
 movies_dict = pickle.load(open("movies_dict.pkl", "rb"))
 movies = pd.DataFrame(movies_dict)
 similarity = pickle.load(open("similarity.pkl", "rb"))
 
-# Function to fetch movie posters
+# TMDB API Headers
+API_HEADERS = {
+    "accept": "application/json",
+    "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzFlNjZkODBlNzVlMDY1NWQxZWNjYTE3OWYyYjc1YSIsInN1YiI6IjY0YmQwNmI5ZTlkYTY5MDBlY2VhNjJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9oIez0y-WbwchQvc-avTyxaRA2Av8H9DrdGdWmOHoEk",
+}
+
+# Fetch movie posters
 def fetch_posters(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
-    headers = {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzFlNjZkODBlNzVlMDY1NWQxZWNjYTE3OWYyYjc1YSIsInN1YiI6IjY0YmQwNmI5ZTlkYTY5MDBlY2VhNjJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9oIez0y-WbwchQvc-avTyxaRA2Av8H9DrdGdWmOHoEk",
-    }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=API_HEADERS)
     data = response.json()
     return "https://image.tmdb.org/t/p/original" + data.get("poster_path", "")
 
-# Function to recommend movies
+# Recommend movies
 def recommend(movie):
     movie_index = movies[movies["title"] == movie].index[0]
     distances = similarity[movie_index]
@@ -35,44 +37,43 @@ def recommend(movie):
         recommend_movie_ids.append(movie_id)
     return recommended_movies, recommend_movie_posters, recommend_movie_ids
 
-# Function to fetch movie details
+# Fetch movie details
 def get_movie_details(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
-    headers = {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzFlNjZkODBlNzVlMDY1NWQxZWNjYTE3OWYyYjc1YSIsInN1YiI6IjY0YmQwNmI5ZTlkYTY5MDBlY2VhNjJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9oIez0y-WbwchQvc-avTyxaRA2Av8H9DrdGdWmOHoEk",
-    }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=API_HEADERS)
     data = response.json()
     overview = data.get("overview", "No overview available.")
     genres = [genre["name"] for genre in data.get("genres", [])]
     release_date = data.get("release_date", "N/A")
     return f"**Overview:** {overview}\n**Genres:** {', '.join(genres)}\n**Release Date:** {release_date}"
 
-# Function to fetch ratings from TMDB
+# Fetch cast information
+def get_cast(movie_id):
+    url = f"https://api.themoviedb.org/3/movie/{movie_id}/credits"
+    response = requests.get(url, headers=API_HEADERS)
+    data = response.json()
+    cast_list = data.get("cast", [])
+    main_cast = cast_list[:5]  # Fetch only top 5 cast members
+    cast_details = [
+        f"{member['name']} as {member['character']}" for member in main_cast
+    ]
+    return cast_details if cast_details else ["No cast information available."]
+
+# Fetch ratings
 def get_ratings(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}"
-    headers = {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzFlNjZkODBlNzVlMDY1NWQxZWNjYTE3OWYyYjc1YSIsInN1YiI6IjY0YmQwNmI5ZTlkYTY5MDBlY2VhNjJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9oIez0y-WbwchQvc-avTyxaRA2Av8H9DrdGdWmOHoEk",
-    }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=API_HEADERS)
     data = response.json()
-    
     ratings = {
         "TMDB Average Rating": data.get("vote_average", "N/A"),
         "TMDB Vote Count": data.get("vote_count", "N/A")
     }
     return ratings
 
-# Function to fetch movie trailers
+# Fetch trailer
 def get_trailer(movie_id):
     url = f"https://api.themoviedb.org/3/movie/{movie_id}/videos"
-    headers = {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzFlNjZkODBlNzVlMDY1NWQxZWNjYTE3OWYyYjc1YSIsInN1YiI6IjY0YmQwNmI5ZTlkYTY5MDBlY2VhNjJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9oIez0y-WbwchQvc-avTyxaRA2Av8H9DrdGdWmOHoEk",
-    }
-    response = requests.get(url, headers=headers)
+    response = requests.get(url, headers=API_HEADERS)
     data = response.json()
     if "results" in data and len(data["results"]) > 0:
         for video in data["results"]:
@@ -95,11 +96,22 @@ if st.button("Find Movies For Me"):
             st.image(poster)
             st.text(name)
             st.write(get_movie_details(movie_id))
+            
+            # Display ratings
             ratings = get_ratings(movie_id)
             if ratings:
                 st.write("**Ratings:**")
                 for source, rating in ratings.items():
                     st.write(f"- {source}: {rating}")
+
+            # Display cast information
+            cast = get_cast(movie_id)
+            st.write("**Main Cast:**")
+            for member in cast:
+                st.write(f"- {member}")
+
+            # Display trailer link
             trailer_url = get_trailer(movie_id)
             if trailer_url:
-                st.write("[Watch Trailer on YouTube]({})".format(trailer_url))
+                if st.button(f"Watch Trailer for {name}", key=f"trailer_{i}"):
+                    st.write(f"[Click here to watch the trailer]({trailer_url})", unsafe_allow_html=True)
