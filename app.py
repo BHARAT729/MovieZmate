@@ -51,37 +51,4 @@ def get_movie_details(movie_id):
 
 # Function to fetch ratings from TMDB
 def get_ratings(movie_id):
-    url = f"https://api.themoviedb.org/3/movie/{movie_id}"
-    headers = {
-        "accept": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1NzFlNjZkODBlNzVlMDY1NWQxZWNjYTE3OWYyYjc1YSIsInN1YiI6IjY0YmQwNmI5ZTlkYTY5MDBlY2VhNjJmMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9oIez0y-WbwchQvc-avTyxaRA2Av8H9DrdGdWmOHoEk",
-    }
-    response = requests.get(url, headers=headers)
-    data = response.json()
-    
-    ratings = {
-        "TMDB Average Rating": data.get("vote_average", "N/A"),
-        "TMDB Vote Count": data.get("vote_count", "N/A")
-    }
-    return ratings
-
-# Streamlit UI
-st.title("MovieZmate (Movies Recommendation System)")
-
-selected_movie_name = st.selectbox(
-    "Select A Movie From Below List", movies["title"].values
-)
-
-if st.button("Find Movies For Me"):
-    names, posters, movie_ids = recommend(selected_movie_name)
-
-    for i, (name, poster, movie_id) in enumerate(zip(names, posters, movie_ids)):
-        with st.container():
-            st.image(poster)
-            st.text(name)
-            st.write(get_movie_details(movie_id))
-            ratings = get_ratings(movie_id)
-            if ratings:
-                st.write("**Ratings:**")
-                for source, rating in ratings.items():
-                    st.write(f"- {source}: {rating}")
+    url =
