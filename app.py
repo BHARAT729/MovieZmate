@@ -85,7 +85,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://c4.wallpaperflare.com/wallpaper/39/346/426/digital-art-men-city-futuristic-night-hd-wallpaper-preview.jpg');
+        background-image: url('https://c4.wallpaperflare.com/wallpaper/175/524/956/digital-digital-art-artwork-fantasy-art-drawing-hd-wallpaper-preview.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
