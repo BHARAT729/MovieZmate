@@ -80,7 +80,20 @@ def get_trailer(movie_id):
             if video["type"] == "Trailer" and video["site"] == "YouTube":
                 return f"https://www.youtube.com/watch?v={video['key']}"
     return None
-
+# Add background image
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url('https://www.wallpaperflare.com/digital-art-men-city-futuristic-night-neon-science-fiction-wallpaper-udroj');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 # Streamlit UI
 st.title("MovieZmate (Movies Recommendation System)")
 
