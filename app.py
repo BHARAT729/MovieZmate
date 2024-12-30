@@ -80,20 +80,6 @@ def get_trailer(movie_id):
             if video["type"] == "Trailer" and video["site"] == "YouTube":
                 return f"https://www.youtube.com/watch?v={video['key']}"
     return None
-# Add background image
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-image: url('https://c4.wallpaperflare.com/wallpaper/163/392/912/map-wold-map-technology-world-wallpaper-preview.jpg');
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
 # Streamlit UI
 st.title("MovieZmate (Movies Recommendation System)")
 
