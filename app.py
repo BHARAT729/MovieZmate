@@ -85,7 +85,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://img.freepik.com/free-photo/assortment-cinema-supplies_23-2147803976.jpg?t=st=1735557637~exp=1735561237~hmac=4b84ebcf98523a0df96d44007cfb67e1b73c6b42fd7a1afa6df6df444d709761&w=826');
+        background-image: url('https://img.freepik.com/free-photo/movie-background-collage_23-2149876015.jpg?t=st=1735557698~exp=1735561298~hmac=282037627f478d6347148248bfa52732815ac84ac416d4b0bcebe9c03390d0c1&w=826');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
