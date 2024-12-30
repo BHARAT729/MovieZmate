@@ -80,6 +80,20 @@ def get_trailer(movie_id):
             if video["type"] == "Trailer" and video["site"] == "YouTube":
                 return f"https://www.youtube.com/watch?v={video['key']}"
     return None
+    # Add background image
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-image: url('https://img.freepik.com/free-photo/assortment-cinema-supplies_23-2147803976.jpg?t=st=1735557637~exp=1735561237~hmac=4b84ebcf98523a0df96d44007cfb67e1b73c6b42fd7a1afa6df6df444d709761&w=826');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 # Streamlit UI
 st.title("MovieZmate (Movies Recommendation System)")
 
