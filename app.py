@@ -85,7 +85,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-image: url('https://img.freepik.com/free-photo/composition-cinema-elements-beige-background-with-copy-space_23-2148416816.jpg?t=st=1735558537~exp=1735562137~hmac=228a575a8fc4c50b52bff41df0ea179a6073e9cf30cf08ec0a2c7e06a175013b&w=826');
+        background-image: url('https://i.imgur.com/YmqAzL1.png');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
