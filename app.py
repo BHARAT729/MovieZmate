@@ -80,8 +80,7 @@ def get_trailer(movie_id):
             if video["type"] == "Trailer" and video["site"] == "YouTube":
                 return f"https://www.youtube.com/watch?v={video['key']}"
     return None
-
-# Add background image
+    # Add background image
 st.markdown(
     """
     <style>
@@ -91,31 +90,12 @@ st.markdown(
         background-position: center;
         background-repeat: no-repeat;
     }
-    .title {
-        font-size: 50px;
-        color: #FFD700;
-        text-align: center;
-        font-family: 'Arial Black', sans-serif;
-        margin-bottom: 20px;
-    }
-    .stButton > button {
-        background-color: #FF4500;
-        color: white;
-        font-size: 20px;
-        border-radius: 12px;
-    }
-    .stSelectbox > div {
-        background-color: #FF6347;
-        color: white;
-        border-radius: 10px;
-    }
     </style>
     """,
     unsafe_allow_html=True,
 )
-
 # Streamlit UI
-st.markdown("<div class='title'>MovieZmate (Movies Recommendation System)</div>", unsafe_allow_html=True)
+st.title("MovieZmate (Movies Recommendation System)")
 
 selected_movie_name = st.selectbox(
     "Select A Movie From Below List", movies["title"].values
@@ -129,7 +109,7 @@ if st.button("Find Movies For Me"):
             st.image(poster)
             st.text(name)
             st.write(get_movie_details(movie_id))
-
+            
             # Display ratings
             ratings = get_ratings(movie_id)
             if ratings:
@@ -147,7 +127,7 @@ if st.button("Find Movies For Me"):
             trailer_url = get_trailer(movie_id)
             if trailer_url:
                 youtube_logo_url = "https://upload.wikimedia.org/wikipedia/commons/4/42/YouTube_icon_%282013-2017%29.png"
-
+                
                 # Display the "Watch Trailer on YouTube" button and the logo
                 st.markdown(
                     f'<a href="{trailer_url}" target="_blank">'
