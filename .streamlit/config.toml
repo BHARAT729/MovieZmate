@@ -1,19 +1,6 @@
 [theme]
-# Netflix-inspired vibrant red for interactive elements
-primaryColor = "#E50914"
-
-# Dark background for a cinematic feel
-backgroundColor = "#121212"
-
-# A slightly lighter dark gray for contrast in containers
-secondaryBackgroundColor = "#1F1F1F"
-
-# Bright golden text for headings, resembling spotlight effects
-textColor = "#FFD700"
-
-# Set the font for a modern, cinematic feel
-font = "monospace"
-
-# Optional advanced theming for a gradient-like background effect (if supported by Streamlit in the future):
-# Uncomment if needed, but this requires additional CSS injection for gradients.
-# backgroundGradient = "linear-gradient(120deg, #121212, #1F1F1F, #E50914)"
+primaryColor = "#ff5733"
+backgroundColor = "#fff2e6"
+secondaryBackgroundColor = "#ffe6cc"
+textColor = "#000000"
+font = "sans serif"
