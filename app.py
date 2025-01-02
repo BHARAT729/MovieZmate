@@ -2,11 +2,34 @@ import streamlit as st
 import pickle
 import pandas as pd
 import requests
+import gdown
+import os
+
+# Download pkl files from Google Drive
+def download_file_from_drive(drive_url, output_filename):
+    file_id = drive_url.split("/d/")[1].split("/")[0]
+    download_url = f"https://drive.google.com/uc?export=download&id={file_id}"
+    gdown.download(download_url, output_filename, quiet=False)
+
+# Paths to save the downloaded files
+movies_dict_path = "movies_dict.pkl"
+movies_path = "movies.pkl"
+similarity_path = "similarity.pkl"
+
+# Download the files if not already downloaded
+if not os.path.exists(movies_dict_path):
+    download_file_from_drive("https://drive.google.com/file/d/1rHVsr9PGql3I7HMBmLa-YCy3tnMhyswG/view?usp=drivesdk", movies_dict_path)
+
+if not os.path.exists(movies_path):
+    download_file_from_drive("https://drive.google.com/file/d/1tRumsN4fdqmZmoIOdpQQo3Qtkt64PXCS/view?usp=drivesdk", movies_path)
+
+if not os.path.exists(similarity_path):
+    download_file_from_drive("https://drive.google.com/file/d/1WtWvlREFnJYCQs_uKsxQqLHD26GyR4uX/view?usp=drivesdk", similarity_path)
 
 # Load movie data and similarity matrix
-movies_dict = pickle.load(open("movies_dict.pkl", "rb"))
+movies_dict = pickle.load(open(movies_dict_path, "rb"))
 movies = pd.DataFrame(movies_dict)
-similarity = pickle.load(open("similarity.pkl", "rb"))
+similarity = pickle.load(open(similarity_path, "rb"))
 
 # TMDB API Headers
 API_HEADERS = {
@@ -80,7 +103,8 @@ def get_trailer(movie_id):
             if video["type"] == "Trailer" and video["site"] == "YouTube":
                 return f"https://www.youtube.com/watch?v={video['key']}"
     return None
-    # Add background image
+
+# Add background image
 st.markdown(
     """
     <style>
@@ -94,6 +118,7 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
 # Streamlit UI
 st.title("MovieZmate (Movies Recommendation System)")
 
