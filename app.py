@@ -21,7 +21,7 @@ def fetch_posters(movie_id):
     data = response.json()
     return "https://image.tmdb.org/t/p/original" + data.get("poster_path", "")
 
-# Recommend movies
+# Recommend movie
 def recommend(movie):
     movie_index = movies[movies["title"] == movie].index[0]
     distances = similarity[movie_index]
